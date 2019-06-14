@@ -1,27 +1,18 @@
 const myLambda = require('../app')
-var expect = require('chai').expect;
+const expect = require('chai').expect
+const assert = require('chai').assert
+const sinon = require('sinon')
+
 
 describe('myLambda', function() {
-        /*
-                        [
-                            { Id: 5, Role: 'Employee', stat1: 'deactive' },
-                            //{ Id: 6, Role: 'Employee', stat1: 'deactive' },
-                            //{ Id: 7, Role: 'Employee', stat1: 'deactive' }
-                        ].forEach(function(obj) {
-                */
+
         it(`successful invocation: `, function(done) {
-
+                sinon.stub(myLambda, 'handler')
                 myLambda.handler({ body: { pro_dealerid: 5 } }, { /* context */ }, (err, result) => {
-
-                    try {
-                        //expect(err).to.not.exist;
-                        //expect(result).to.exist;
-
-                        done();
-                    } catch (error) {
-                        done(error);
-                    }
+                    console.log('function called');
+                    expect(myLambda.handler.calledOnce).to.be.true
+                    sinon.restore()
+                    done()
                 })
-            }) //it
-            //  }) //forEach
+            }) //it            
     }) //describe
