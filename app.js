@@ -10,7 +10,7 @@ const prop = require('./properties');
 
 exports.handler = (event, context, callback) => {
 
-    console.log("pro_dealer List: " + JSON.stringify(event));
+    //console.log("pro_dealer List: " + JSON.stringify(event));
     var params_query = {
 
         TableName: prop.table_proDealer,
@@ -29,16 +29,17 @@ exports.handler = (event, context, callback) => {
             ":stat1": "deactive"
         }
     };
+    //callback(null, 5);
+    //console.log("pro_dealer List: " + JSON.stringify(params_query));
+    /*
+        dynamo.query(params_query, (err, data) => {
 
-    console.log("pro_dealer List: " + JSON.stringify(params_query));
-
-    dynamo.query(params_query, (err, data) => {
-
-        if (err) {
-            console.log(JSON.stringify(err));
-        } else {
-            console.log(JSON.stringify(data.Items));
-            callback(null, data);
-        }
-    })
+            if (err) {
+                console.log(JSON.stringify(err));
+            } else {
+                console.log(JSON.stringify(data.Items));
+                callback(null, data);
+            }
+        })
+    */
 };
